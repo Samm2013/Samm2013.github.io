@@ -1,6 +1,7 @@
-<div align="center">
-  <img src="https://via.placeholder.com/1500x300/000000/FFFFFF?text=Welcome+to+My+GitHub" alt="Welcome Banner" width="100%">
+<div align="corner">
+  <img src="https://via.placeholder.com/400x250/000000/FFFFFF?text=Login" alt="Login">
 </div>
+
 
 # My GitHub Project
 
