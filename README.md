@@ -1,54 +1,35 @@
-# My Project
+<div align="center">
+  <img src="https://via.placeholder.com/1500x300/000000/FFFFFF?text=Welcome+to+My+GitHub" alt="Welcome Banner" width="100%">
+</div>
 
-## Introduction
+# My GitHub Project
 
-This is a sample GitHub Markdown file to showcase different formatting options.
+<div align="center">
 
-### Features
+</div>
 
-- **Bold text**
-- *Italic text*
-- ~~Strikethrough~~
-- `Inline code`
+## About
 
-## Code Blocks
-## Lists
+This is a website for my minigames and to chat with others
 
-1. First item
-2. Second item
-3. Third item
+## This Contains
 
-- Unordered item 1
-- Unordered item 2
-  - Nested item
+- Minigames
+- Chats
 
-## Links and Images
+## Hackathon
 
-[Visit GitHub](https://github.com)
+To clarify, this is made for me to compete in the Hackathon competition at my school
 
-![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+## Contact
 
-## Tables
+Feel free to reach out if you have any questions or suggestions!
 
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Row 1    | Data     | Data     |
-| Row 2    | Data     | Data     |
-
-## Blockquotes
-
-> This is a blockquote.
-> It can span multiple lines.
-
-## Horizontal Rule
-
----
-
-## Task Lists
-
-- [x] Completed task
-- [ ] Incomplete task
-
-## Emoji
-
-:smile: :rocket: :octocat:
+<div align="center">
+  <a href="https://github.com/Samm2013">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+  </a>
+  <a href="mailto:santhoshviknesh19@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
+  </a>
+</div>
