@@ -8,12 +8,7 @@
 
 ## About
 
-This is a website for my minigames and to chat with others
-
-## This Contains
-
-- Minigames
-- Chats
+This is a website to use for reference
 
 ## Hackathon
 
@@ -31,3 +26,5 @@ Feel free to reach out if you have any questions or suggestions!
     <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email">
   </a>
 </div>
+
+<a href="https://samm2013.github.io/docs.source" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Markdown</a>
