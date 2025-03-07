@@ -1,7 +1,6 @@
-<div align="corner">
-  <img src="https://via.placeholder.com/400x250/000000/FFFFFF?text=Login" alt="Login">
-</div>
-
+<div align="corner"
+  [Login to My App](https://example.com/login)
+<a href="https://example.com/login" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Login to My App</a>
 
 # My GitHub Project
 
