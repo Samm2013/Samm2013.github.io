@@ -1,4 +1,3 @@
-</div>
 <a href="https://samm2013.github.io/login.html" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Login</a>
 
 # My GitHub Project
