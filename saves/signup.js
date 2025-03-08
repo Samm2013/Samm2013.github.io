@@ -16,16 +16,21 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const userData = {
-            firstName,
-            lastName,
-            email,
-            username,
-            password, // Note: In a real application, never store passwords in plain text
-        };
+        if (firstName && lastName && email && username && password) {
+            const userData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                username: username,
+                // In a real app, never store passwords in localStorage
+                // This is just for demonstration
+                password: password
+            };
 
-        localStorage.setItem('userData', JSON.stringify(userData));
-
-        window.location.href = 'index.html';
+            localStorage.setItem('userData', JSON.stringify(userData));
+            window.location.href = 'index.html';
+        } else {
+            alert('Please fill in all fields.');
+        }
     });
 });
