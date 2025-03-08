@@ -1,31 +1,26 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the form element
     const form = document.querySelector('form');
 
-    // Add event listener for form submission
     form.addEventListener('submit', function (event) {
-        // Prevent the default form submission
         event.preventDefault();
 
-        // Get the input values
         const username = document.querySelector('input[placeholder="Username"]').value.trim();
         const password = document.querySelector('input[placeholder="Password"]').value.trim();
 
-        // Perform basic validation (optional)
-        if (!username || !password) {
-            alert("Please enter both username and password.");
-            return;
+        // In a real application, you would validate these credentials against a server
+        // For this example, we'll just check if they're not empty
+        if (username && password) {
+            const userData = {
+                username: username,
+                // In a real app, never store passwords in localStorage
+                // This is just for demonstration
+                password: password
+            };
+
+            localStorage.setItem('userData', JSON.stringify(userData));
+            window.location.href = 'index.html';
+        } else {
+            alert('Please enter both username and password.');
         }
-
-        // Save login data (for demonstration purposes)
-        const loginData = {
-            username,
-            password,
-        };
-        localStorage.setItem('loginData', JSON.stringify(loginData));
-
-        // Redirect to index.html
-        window.location.href = 'index.html';
     });
 });
