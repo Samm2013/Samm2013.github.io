@@ -9,25 +9,23 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         // Get the input values
-        const username = document.querySelector('input[placeholder="Username"]').value;
-        const password = document.querySelector('input[placeholder="Password"]').value;
+        const username = document.querySelector('input[placeholder="Username"]').value.trim();
+        const password = document.querySelector('input[placeholder="Password"]').value.trim();
 
-        // Create a JSON object with the login data
+        // Perform basic validation (optional)
+        if (!username || !password) {
+            alert("Please enter both username and password.");
+            return;
+        }
+
+        // Save login data (for demonstration purposes)
         const loginData = {
-            username: username,
-            password: password,
+            username,
+            password,
         };
+        localStorage.setItem('loginData', JSON.stringify(loginData));
 
-        // Save the login data in localStorage as a JSON string
-        saveLoginData(loginData);
-
-        // Redirect the user to index.html
+        // Redirect to index.html
         window.location.href = 'index.html';
     });
 });
-
-// Function to save login data
-function saveLoginData(loginData) {
-    // Save the JSON object as a string in localStorage
-    localStorage.setItem('loginData', JSON.stringify(loginData));
-}
