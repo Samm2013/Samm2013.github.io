@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     logoutLink.addEventListener('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('userData');
-        updateUserStatus();
+        window.location.href = 'https://Samm2013.github.io';
     });
 
     updateUserStatus();
