@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateUserStatus() {
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData.username) {
-            welcomeMessage.textContent = `Welcome, ${userData.username}!`;
+            welcomeMessage.textContent = `Welcome, ${userData.username}! You are logged in.`;
             loginLink.style.display = 'none';
             logoutLink.style.display = 'inline-block';
         } else {
-            welcomeMessage.textContent = '';
+            welcomeMessage.textContent = 'Please log in or sign up.';
             loginLink.style.display = 'inline-block';
             logoutLink.style.display = 'none';
         }
@@ -19,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
     logoutLink.addEventListener('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('userData');
-        window.location.href = 'https://Samm2013.github.io';
+        welcomeMessage.textContent = 'You have been logged out.';
+        updateUserStatus();
     });
 
     updateUserStatus();
