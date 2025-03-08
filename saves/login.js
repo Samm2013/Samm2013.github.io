@@ -1,10 +1,10 @@
 // Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Get the form element
     const form = document.querySelector('form');
 
     // Add event listener for form submission
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', function (event) {
         // Prevent the default form submission
         event.preventDefault();
 
@@ -12,26 +12,22 @@ document.addEventListener('DOMContentLoaded', function() {
         const username = document.querySelector('input[placeholder="Username"]').value;
         const password = document.querySelector('input[placeholder="Password"]').value;
 
-        // Create an object with the login data
+        // Create a JSON object with the login data
         const loginData = {
             username: username,
-            password: password
+            password: password,
         };
 
-        // Save the login data
+        // Save the login data in localStorage as a JSON string
         saveLoginData(loginData);
 
-        // Clear the form
-        form.reset();
-
-        // Inform the user
-        alert("Login credentials saved!");
+        // Redirect the user to index.html
+        window.location.href = 'index.html';
     });
 });
 
 // Function to save login data
 function saveLoginData(loginData) {
-    // In a real application, you would typically send this data to a server for authentication
-    // For this example, we'll just save it to localStorage
+    // Save the JSON object as a string in localStorage
     localStorage.setItem('loginData', JSON.stringify(loginData));
 }
