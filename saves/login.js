@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             localStorage.setItem('userData', JSON.stringify(userData));
-            window.location.href = 'index.html';
+            window.location.href = 'https://samm2013.github.io/saves/home/index.html';
         } else {
             alert('Please enter both username and password.');
         }
