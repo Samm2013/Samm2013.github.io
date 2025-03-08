@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add a slight delay before redirecting to ensure the message is seen
         setTimeout(function() {
             window.location.href = 'https://samm2013.github.io';
-        }, 2000); // 1000 milliseconds = 1 second
+        }, 1000); // 1000 milliseconds = 1 second
     });
 
     updateUserStatus();
