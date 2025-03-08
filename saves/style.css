@@ -1,15 +1,4 @@
 body {
-    background-image: url('https://www.istockphoto.com/photos/hacker-image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-        }
-.container {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-        }
-body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -18,6 +7,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-image: url('https://www.istockphoto.com/photos/hacker-image.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .container {
@@ -25,8 +18,8 @@ body {
     max-width: 800px;
     margin: 20px;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
 }
