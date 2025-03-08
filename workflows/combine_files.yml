@@ -33,7 +33,7 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        <script src="script.js"></script>
+        <script src="combine_files.js"></script>
         </div>
       <head>
     <body>
