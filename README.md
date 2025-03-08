@@ -27,4 +27,4 @@ Feel free to reach out if you have any questions or suggestions!
   </a>
 </div>
 
-<a href="https://samm2013.github.io/docs/source.html" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Markdown</a>
+<a href="https://samm2013.github.io/docs/source.md" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Markdown</a>
