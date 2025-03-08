@@ -1,17 +1,26 @@
-// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the welcome message element
     const welcomeMessage = document.getElementById('welcome-message');
+    const loginLink = document.getElementById('login-link');
+    const logoutLink = document.getElementById('logout-link');
 
-    // Retrieve login data from localStorage
-    const loginData = JSON.parse(localStorage.getItem('loginData'));
-
-    // Check if loginData exists and has a username
-    if (loginData && loginData.username) {
-        // Update the welcome message with the username
-        welcomeMessage.textContent = `Welcome, ${loginData.username}`;
-    } else {
-        // Default message if no user is logged in
-        welcomeMessage.textContent = 'My GitHub Project';
+    function updateUserStatus() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData && userData.username) {
+            welcomeMessage.textContent = `Welcome, ${userData.username}!`;
+            loginLink.style.display = 'none';
+            logoutLink.style.display = 'inline-block';
+        } else {
+            welcomeMessage.textContent = '';
+            loginLink.style.display = 'inline-block';
+            logoutLink.style.display = 'none';
+        }
     }
+
+    logoutLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('userData');
+        updateUserStatus();
+    });
+
+    updateUserStatus();
 });
