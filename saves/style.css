@@ -1,5 +1,6 @@
+
 body {
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -21,6 +22,18 @@ body {
     overflow: hidden;
 }
 
+#user-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#welcome-message {
+    font-weight: bold;
+    color: #333;
+}
+
 .button {
     background-color: #4CAF50;
     color: white;
@@ -29,20 +42,34 @@ body {
     text-decoration: none;
     display: inline-block;
     border-radius: 5px;
-    margin-bottom: 10px;
-    float: left;
-    clear: left;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+#logout-link {
+    background-color: #f44336;
+}
+
+#logout-link:hover {
+    background-color: #d32f2f;
 }
 
 .about, .hackathon, .contact {
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    background-color: #f9f9f9;
 }
 
 .contact-links {
-    margin-top: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
 }
 
 .contact-links a {
@@ -51,4 +78,10 @@ body {
 
 h1, h2 {
     color: #333;
+    margin-bottom: 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
 }
