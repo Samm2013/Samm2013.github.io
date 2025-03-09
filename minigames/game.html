@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Game Shop</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Mini-Game Shop</h1>
+
+        <!-- Player's Money -->
+        <div class="money-display">
+            You currently have $<span id="money">30</span>
+        </div>
+
+        <!-- Shop Items -->
+        <div class="shop-items">
+            <h2>Shop Items</h2>
+            <button onclick="buyItem('apple', 20)">Apple - $20</button>
+            <button onclick="buyItem('banana', 10)">Banana - $10</button>
+            <button onclick="buyItem('berries', 5)">Berries - $5</button>
+            <button onclick="buyItem('orange', 15)">Orange - $15</button>
+            <button onclick="buyItem('mango', 25)">Mango - $25</button>
+        </div>
+
+        <!-- Inventory -->
+        <div class="inventory-display">
+            <h2>Your Inventory</h2>
+            <ul id="inventory-list">
+                <!-- Inventory items will be displayed here -->
+                <li>No items yet.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // JavaScript Logic
+        let money = 30; // Initial money
+        let inventory = {}; // Player's inventory
+
+        // Function to buy an item
+        function buyItem(itemName, price) {
+            if (money >= price) {
+                money -= price; // Deduct money
+                if (inventory[itemName]) {
+                    inventory[itemName]++; // Increment item count
+                } else {
+                    inventory[itemName] = 1; // Add new item
+                }
+                updateDisplay();
+                alert(`You bought ${itemName} for $${price}.`);
+            } else {
+                alert("Not enough money!");
+            }
+        }
+
+        // Function to update the display
+        function updateDisplay() {
+            document.getElementById("money").textContent = money;
+
+            const inventoryList = document.getElementById("inventory-list");
+            inventoryList.innerHTML = ""; // Clear current inventory display
+
+            if (Object.keys(inventory).length === 0) {
+                inventoryList.innerHTML = "<li>No items yet.</li>";
+                return;
+            }
+
+            for (const [itemName, quantity] of Object.entries(inventory)) {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${itemName} x${quantity}`;
+                inventoryList.appendChild(listItem);
+            }
+        }
+    </script>
+</body>
+</html>
