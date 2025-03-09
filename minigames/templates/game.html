@@ -10,40 +10,123 @@
     <div class="container">
         <h1>Mini-Game Shop</h1>
         <div id="money-display">You currently have $<span id="money">{{ player.money }}</span></div>
+        
+        <div id="game-goals" class="goals-panel"></div>
+
         <div id="shop-items">
             <h2>Shop Items</h2>
             {% for item, price in shop_items.items() %}
                 <button onclick="buyItem('{{ item }}', {{ price }})">{{ item.capitalize() }} - ${{ price }}</button>
             {% endfor %}
         </div>
+
         <div id="inventory-display">
             <h2>Your Inventory</h2>
             <ul id="inventory-list"></ul>
         </div>
+        
         <div id="message"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function updateDisplay(data) {
-            $('#money').text(data.money);
-            $('#inventory-list').empty();
-            $.each(data.inventory, function(item, quantity) {
-                $('#inventory-list').append(`<li>${item}: ${quantity}</li>`);
+        const GameGoals = {
+            moneyTarget: 100,
+            requiredItems: { apple: 3, banana: 5 },
+            maxTurns: 20
+        };
+
+        let currentTurn = 1;
+        let gameActive = true;
+        let player = {
+            money: {{ player.money }},
+            inventory: {{ player.inventory|tojson }}
+        };
+
+        function checkGoals() {
+            const moneyGoal = player.money >= GameGoals.moneyTarget;
+            let inventoryGoal = true;
+            
+            for(const [item, quantity] of Object.entries(GameGoals.requiredItems)) {
+                if((player.inventory[item] || 0) < quantity) {
+                    inventoryGoal = false;
+                    break;
+                }
+            }
+            
+            const turnsLeft = GameGoals.maxTurns - currentTurn;
+            return { moneyGoal, inventoryGoal, turnsLeft };
+        }
+
+        function updateGoalsDisplay(goals) {
+            $('#game-goals').html(`
+                <h3>Game Goals (Turn ${currentTurn}/${GameGoals.maxTurns})</h3>
+                <p>💰 Reach $${GameGoals.moneyTarget}: ${goals.moneyGoal ? '✅' : '❌'}</p>
+                <p>🛒 Collect items (3 apples, 5 bananas): ${goals.inventoryGoal ? '✅' : '❌'}</p>
+                <p>⏳ Turns remaining: ${goals.turnsLeft}</p>
+            `);
+
+            if(goals.moneyGoal && goals.inventoryGoal) {
+                endGame(true);
+            } else if(currentTurn >= GameGoals.maxTurns) {
+                endGame(false);
+            }
+        }
+
+        function endGame(won) {
+            gameActive = false;
+            $('#shop-items button').prop('disabled', true);
+            $('#message').text(won ? 
+                '🎉 Congratulations! You won the game!' : 
+                '😞 Game Over! You ran out of turns.');
+            
+            $.post('/save-game', {
+                won: won,
+                finalMoney: player.money,
+                inventory: player.inventory,
+                turns: currentTurn
             });
-            $('#message').text(data.message);
         }
 
         function buyItem(item, price) {
-            $.post('/buy', {item: item}, function(data) {
+            if(!gameActive) return;
+            
+            $.post('/buy', { item: item }, function(data) {
+                player.money = data.money;
+                player.inventory = data.inventory;
+                currentTurn++;
+                
                 updateDisplay(data);
+                updateGoalsDisplay(checkGoals());
+                
+                if(data.message) {
+                    $('#message').append(`<div class="random-event">⚡ ${data.message}</div>`);
+                }
             });
         }
 
+        function updateDisplay(data) {
+            $('#money').text(data.money);
+            $('#inventory-list').empty();
+            
+            if(Object.keys(data.inventory).length === 0) {
+                $('#inventory-list').append('<li>No items yet</li>');
+            } else {
+                for(const [item, quantity] of Object.entries(data.inventory)) {
+                    $('#inventory-list').append(`<li>${item}: ${quantity}</li>`);
+                }
+            }
+        }
+
         $(document).ready(function() {
+            $.get('/get-goals', function(goals) {
+                Object.assign(GameGoals, goals);
+                updateGoalsDisplay(checkGoals());
+            });
+            
             updateDisplay({
-                money: {{ player.money }},
-                inventory: {{ player.inventory|tojson }},
+                money: player.money,
+                inventory: player.inventory,
                 message: ''
             });
         });
