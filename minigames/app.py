@@ -19,7 +19,6 @@ class Player:
         return False
 
 player = Player()
-
 shop_items = {
     "apple": 20,
     "banana": 10,
@@ -35,6 +34,7 @@ def index():
 @app.route('/buy', methods=['POST'])
 def buy():
     item = request.form['item']
+    message = ""
     if item in shop_items:
         if player.buy(item, shop_items[item]):
             message = f"You bought {item} for ${shop_items[item]}."
@@ -44,7 +44,7 @@ def buy():
         message = "Invalid item."
     
     # Random event
-    if random.random() < 0.2:  # 20% chance of a random event
+    if random.random() < 0.2:
         event_type = random.choice(["find", "lose"])
         amount = random.randint(1, 10)
         if event_type == "find":
@@ -59,6 +59,21 @@ def buy():
         'inventory': player.inventory,
         'message': message
     })
+
+@app.route('/get-goals')
+def get_goals():
+    return jsonify({
+        'moneyTarget': 100,
+        'requiredItems': {'apple': 3, 'banana': 5},
+        'maxTurns': 20
+    })
+
+@app.route('/save-game', methods=['POST'])
+def save_game():
+    data = request.json
+    # In a real app, save to database here
+    print(f"Game saved - Result: {data}")
+    return jsonify({'status': 'success'})
 
 if __name__ == '__main__':
     app.run(debug=True)
