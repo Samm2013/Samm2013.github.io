@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Game Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mini-Game Shop</h1>
+        <div id="money-display">You currently have $<span id="money">{{ player.money }}</span></div>
+        <div id="shop-items">
+            <h2>Shop Items</h2>
+            {% for item, price in shop_items.items() %}
+                <button onclick="buyItem('{{ item }}', {{ price }})">{{ item.capitalize() }} - ${{ price }}</button>
+            {% endfor %}
+        </div>
+        <div id="inventory-display">
+            <h2>Your Inventory</h2>
+            <ul id="inventory-list"></ul>
+        </div>
+        <div id="message"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateDisplay(data) {
+            $('#money').text(data.money);
+            $('#inventory-list').empty();
+            $.each(data.inventory, function(item, quantity) {
+                $('#inventory-list').append(`<li>${item}: ${quantity}</li>`);
+            });
+            $('#message').text(data.message);
+        }
+
+        function buyItem(item, price) {
+            $.post('/buy', {item: item}, function(data) {
+                updateDisplay(data);
+            });
+        }
+
+        $(document).ready(function() {
+            updateDisplay({
+                money: {{ player.money }},
+                inventory: {{ player.inventory|tojson }},
+                message: ''
+            });
+        });
+    </script>
+</body>
+</html>
