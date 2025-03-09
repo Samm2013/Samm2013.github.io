@@ -1,26 +1,34 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
+    const errorMessage = document.getElementById('errorMessage');
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const username = document.querySelector('input[placeholder="Username"]').value.trim();
-        const password = document.querySelector('input[placeholder="Password"]').value.trim();
+        const username = document.querySelector('input[type="text"]').value.trim();
+        const password = document.querySelector('input[type="password"]').value.trim();
 
-        // In a real application, you would validate these credentials against a server
-        // For this example, we'll just check if they're not empty
-        if (username && password) {
-            const userData = {
-                username: username,
-                // In a real app, never store passwords in localStorage
-                // This is just for demonstration
-                password: password
-            };
+        // Retrieve stored user data
+        const storedUser = JSON.parse(localStorage.getItem('userData'));
 
-            localStorage.setItem('userData', JSON.stringify(userData));
-            window.location.href = 'https://samm2013.github.io/saves/home/index.html';
+        if (!storedUser) {
+            showError('No account found. Please sign up first.');
+            return;
+        }
+
+        if (username === storedUser.username && password === storedUser.password) {
+            // Successful login
+            window.location.href = 'index.html';
         } else {
-            alert('Please enter both username and password.');
+            showError('Invalid username or password');
         }
     });
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 3000);
+    }
 });
