@@ -26,9 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 // This is just for demonstration
                 password: password
             };
+            const jsonString = JSON.stringify(userData, null, 2);
+            const fs = require('fs');
 
-            localStorage.setItem('userData', JSON.stringify(userData));
-            window.location.href = 'https://samm2013.github.io/saves/home/index.html';
+            fs.writeFile('data.json', jsonString, (err) => {
+                if (err) {
+                    console.error('Error writing file:', err);
+                    return;
+                }
+                console.log('Data successfully written to data.json');
+            });
+            
         } else {
             alert('Please fill in all fields.');
         }
